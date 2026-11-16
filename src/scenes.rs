@@ -24,7 +24,7 @@ pub fn builtin() -> Vec<Scene> {
     file.scenes
 }
 
-#[derive(Default, Serialize, Deserialize)]
+#[derive(Serialize, Deserialize)]
 pub struct SavedState {
     #[serde(default = "default_master")]
     pub master: f32,
@@ -38,6 +38,19 @@ pub struct SavedState {
 
 fn default_master() -> f32 {
     0.8
+}
+
+// Hand-written so a first launch (no state file yet) starts at a sensible
+// master level; a derived Default would give 0.0 and a silent app.
+impl Default for SavedState {
+    fn default() -> Self {
+        Self {
+            master: default_master(),
+            scenes: Vec::new(),
+            last_mix: Vec::new(),
+            resume_on_start: false,
+        }
+    }
 }
 
 pub fn state_path() -> Option<PathBuf> {
