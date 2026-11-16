@@ -1,0 +1,29 @@
+[package]
+name = "dm-sounds"
+version = "0.1.0"
+edition = "2021"
+description = "Ambient soundboard for Dungeon Masters"
+license = "MIT"
+build = "build.rs"
+
+[dependencies]
+eframe = { version = "0.31", default-features = false, features = ["default_fonts", "glow", "wayland", "x11"] }
+egui = "0.31"
+rodio = { version = "0.20", default-features = false, features = ["vorbis"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+dirs = "6"
+
+[build-dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+strip = true
+panic = "abort"
+
+[profile.dev]
+opt-level = 1
