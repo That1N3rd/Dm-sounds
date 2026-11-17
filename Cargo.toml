@@ -1,6 +1,6 @@
 [package]
 name = "dm-sounds"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 description = "Ambient soundboard for Dungeon Masters"
 license = "MIT"
